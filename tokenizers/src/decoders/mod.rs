@@ -26,13 +26,13 @@ pub enum DecoderWrapper {
 }
 
 impl Decoder for DecoderWrapper {
-    fn decode(&self, tokens: Vec<String>) -> Result<String> {
+    fn decode(&self, tokens: Vec<String>) -> Result<Vec<String>> {
         match self {
-            DecoderWrapper::BPE(bpe) => bpe.decode(tokens),
-            DecoderWrapper::ByteLevel(bl) => bl.decode(tokens),
-            DecoderWrapper::Metaspace(ms) => ms.decode(tokens),
-            DecoderWrapper::WordPiece(wp) => wp.decode(tokens),
-            DecoderWrapper::CTC(ctc) => ctc.decode(tokens),
+            Self::BPE(bpe) => bpe.decode(tokens),
+            Self::ByteLevel(bl) => bl.decode(tokens),
+            Self::Metaspace(ms) => ms.decode(tokens),
+            Self::WordPiece(wp) => wp.decode(tokens),
+            Self::CTC(ctc) => ctc.decode(tokens),
         }
     }
 }
